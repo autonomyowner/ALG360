@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react'
+import Skeleton from '../components/Skeleton'
+import EmptyState from '../components/EmptyState'
+
 const courses = [
   {
     title: 'اللغة الأمازيغية للمبتدئين',
@@ -50,6 +54,13 @@ const courses = [
 ]
 
 export default function Academic() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 500)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-12">
       <div className="mb-10">
@@ -60,37 +71,52 @@ export default function Academic() {
           منصة تعليمية متكاملة تقدم دورات أكاديمية متخصصة في الثقافة، التاريخ، والاقتصاد الجزائري.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {courses.map((course) => (
-          <div
-            key={course.title}
-            className="group rounded-xl overflow-hidden bg-surface-container-low border border-white/5 hover:border-primary/30 transition-all duration-300"
-          >
-            <div className="h-2 bg-gradient-to-r from-primary to-secondary" />
-            <div className="p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="font-label-caps text-label-caps text-primary">{course.level}</span>
-                <span className="text-outline">•</span>
-                <span className="font-label-caps text-label-caps text-outline">{course.lessons} درس</span>
-              </div>
-              <h3 className="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-primary transition-colors">
-                {course.title}
-              </h3>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">
-                {course.description}
-              </p>
-              <div className="flex items-center justify-between pt-3 border-t border-white/5">
-                <span className="font-body-md text-body-md text-on-surface-variant">
-                  {course.instructor}
-                </span>
-                <span className="font-body-md text-body-md text-on-surface-variant">
-                  {course.students} طالب
-                </span>
+
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} variant="card" />
+          ))}
+        </div>
+      ) : courses.length === 0 ? (
+        <EmptyState
+          icon="school"
+          title="لا توجد دورات"
+          description="لم نتمكن من العثور على دورات حالياً. يرجى العودة لاحقاً."
+        />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {courses.map((course) => (
+            <div
+              key={course.title}
+              className="group rounded-xl overflow-hidden bg-surface-container-low border border-white/5 hover:border-primary/30 transition-all duration-300"
+            >
+              <div className="h-2 bg-gradient-to-r from-primary to-secondary" />
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="font-label-caps text-label-caps text-primary">{course.level}</span>
+                  <span className="text-outline">•</span>
+                  <span className="font-label-caps text-label-caps text-outline">{course.lessons} درس</span>
+                </div>
+                <h3 className="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-primary transition-colors">
+                  {course.title}
+                </h3>
+                <p className="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">
+                  {course.description}
+                </p>
+                <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                  <span className="font-body-md text-body-md text-on-surface-variant">
+                    {course.instructor}
+                  </span>
+                  <span className="font-body-md text-body-md text-on-surface-variant">
+                    {course.students} طالب
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

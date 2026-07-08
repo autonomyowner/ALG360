@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react'
+import Skeleton from '../components/Skeleton'
+import EmptyState from '../components/EmptyState'
+
 const resources = [
   {
     title: 'موسوعة التراث الجزائري',
@@ -50,6 +54,13 @@ const resources = [
 ]
 
 export default function Library() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 500)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-12">
       <div className="mb-10">
@@ -60,29 +71,44 @@ export default function Library() {
           مكتبة رقمية تضم مئات المصادر والمراجع حول الجزائر: ثقافة، تاريخ، اقتصاد، وفنون.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {resources.map((item) => (
-          <div
-            key={item.title}
-            className="group rounded-xl overflow-hidden bg-surface-container-low border border-white/5 hover:border-tertiary/30 transition-all duration-300 p-5"
-          >
-            <div className="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-tertiary">menu_book</span>
+
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <Skeleton key={i} variant="card" />
+          ))}
+        </div>
+      ) : resources.length === 0 ? (
+        <EmptyState
+          icon="menu_book"
+          title="المكتبة فارغة"
+          description="لا توجد موارد حالياً. يرجى العودة لاحقاً."
+        />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {resources.map((item) => (
+            <div
+              key={item.title}
+              className="group rounded-xl overflow-hidden bg-surface-container-low border border-white/5 hover:border-tertiary/30 transition-all duration-300 p-5"
+            >
+              <div className="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center mb-4">
+                <span className="material-symbols-outlined text-tertiary">menu_book</span>
+              </div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="font-label-caps text-label-caps text-tertiary">{item.type}</span>
+                <span className="text-outline">•</span>
+                <span className="font-label-caps text-label-caps text-outline">{item.pages} صفحة</span>
+              </div>
+              <h3 className="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-tertiary transition-colors">
+                {item.title}
+              </h3>
+              <p className="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+                {item.description}
+              </p>
             </div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="font-label-caps text-label-caps text-tertiary">{item.type}</span>
-              <span className="text-outline">•</span>
-              <span className="font-label-caps text-label-caps text-outline">{item.pages} صفحة</span>
-            </div>
-            <h3 className="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-tertiary transition-colors">
-              {item.title}
-            </h3>
-            <p className="font-body-md text-body-md text-on-surface-variant line-clamp-2">
-              {item.description}
-            </p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react'
+import Skeleton from '../components/Skeleton'
+import EmptyState from '../components/EmptyState'
+
 const films = [
   {
     title: 'وادي الذكريات',
@@ -38,6 +42,13 @@ const films = [
 ]
 
 export default function Films() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 500)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-12">
       <div className="mb-10">
@@ -48,29 +59,44 @@ export default function Films() {
           اكتشف مجموعة مختارة من أفضل الأفلام الجزائرية، من الدراما إلى الوثائقيات والتاريخ.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {films.map((film) => (
-          <div
-            key={film.title}
-            className="group relative rounded-xl overflow-hidden bg-surface-container-low border border-white/5 hover:border-secondary-container/50 transition-all duration-300"
-          >
-            <div className="aspect-[16/9] bg-surface-container-high" />
-            <div className="p-5">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="font-label-caps text-label-caps text-secondary">{film.category}</span>
-                <span className="text-outline">•</span>
-                <span className="font-label-caps text-label-caps text-outline">{film.year}</span>
+
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} variant="card" />
+          ))}
+        </div>
+      ) : films.length === 0 ? (
+        <EmptyState
+          icon="movie_off"
+          title="لا توجد أفلام"
+          description="لم نتمكن من العثور على أفلام حالياً. يرجى العودة لاحقاً."
+        />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {films.map((film) => (
+            <div
+              key={film.title}
+              className="group relative rounded-xl overflow-hidden bg-surface-container-low border border-white/5 hover:border-secondary-container/50 transition-all duration-300"
+            >
+              <div className="aspect-[16/9] bg-surface-container-high" />
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="font-label-caps text-label-caps text-secondary">{film.category}</span>
+                  <span className="text-outline">•</span>
+                  <span className="font-label-caps text-label-caps text-outline">{film.year}</span>
+                </div>
+                <h3 className="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-primary transition-colors">
+                  {film.title}
+                </h3>
+                <p className="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+                  {film.description}
+                </p>
               </div>
-              <h3 className="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-primary transition-colors">
-                {film.title}
-              </h3>
-              <p className="font-body-md text-body-md text-on-surface-variant line-clamp-2">
-                {film.description}
-              </p>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

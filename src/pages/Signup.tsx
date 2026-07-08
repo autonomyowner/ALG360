@@ -1,4 +1,15 @@
+import { useState } from 'react'
+import Spinner from '../components/Spinner'
+
 export default function Signup({ navigate }: { navigate: (to: string) => void }) {
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setTimeout(() => setSubmitting(false), 1500)
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center px-margin-mobile md:px-margin-desktop py-20">
       <div className="w-full max-w-md">
@@ -12,7 +23,7 @@ export default function Signup({ navigate }: { navigate: (to: string) => void })
           </p>
         </div>
 
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-5" onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block font-body-md text-body-md text-on-surface-variant mb-2">
@@ -81,9 +92,11 @@ export default function Signup({ navigate }: { navigate: (to: string) => void })
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-primary text-on-primary font-headline-md text-headline-md hover:brightness-110 transition-all duration-300"
+            disabled={submitting}
+            className="w-full py-3 rounded-xl bg-primary text-on-primary font-headline-md text-headline-md hover:brightness-110 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            إنشاء الحساب
+            {submitting && <Spinner />}
+            {submitting ? 'جاري إنشاء الحساب...' : 'إنشاء الحساب'}
           </button>
         </form>
 

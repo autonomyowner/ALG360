@@ -25,7 +25,7 @@ export default function Footer({ navigate }: { navigate: (to: string) => void })
           <span className="font-body-md text-body-md text-on-surface-variant opacity-80">
             © 2024 الجزائر 360. جميع الحقوق محفوظة.
           </span>
-          <a href="https://sitedz.com" target="_blank" rel="noopener noreferrer" className="font-headline-md text-headline-md text-tertiary hover:text-tertiary brightness-110 hover:brightness-150 transition-all drop-shadow-[0_0_10px_rgba(231,190,97,0.45)]">
+          <a href="https://sitedz.com" target="_blank" rel="noopener noreferrer" className="font-body-lg text-body-lg text-tertiary hover:text-tertiary brightness-110 hover:brightness-150 transition-all drop-shadow-[0_0_10px_rgba(231,190,97,0.45)]">
             sitedz
           </a>
         </div>

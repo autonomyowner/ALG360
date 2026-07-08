@@ -1,4 +1,15 @@
+import { useState } from 'react'
+import Spinner from '../components/Spinner'
+
 export default function Login({ navigate }: { navigate: (to: string) => void }) {
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setTimeout(() => setSubmitting(false), 1500)
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center px-margin-mobile md:px-margin-desktop py-20">
       <div className="w-full max-w-md">
@@ -12,7 +23,7 @@ export default function Login({ navigate }: { navigate: (to: string) => void }) 
           </p>
         </div>
 
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-5" onSubmit={handleSubmit}>
           <div>
             <label className="block font-body-md text-body-md text-on-surface-variant mb-2">
               البريد الإلكتروني
@@ -47,9 +58,11 @@ export default function Login({ navigate }: { navigate: (to: string) => void }) 
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-primary text-on-primary font-headline-md text-headline-md hover:brightness-110 transition-all duration-300"
+            disabled={submitting}
+            className="w-full py-3 rounded-xl bg-primary text-on-primary font-headline-md text-headline-md hover:brightness-110 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            تسجيل الدخول
+            {submitting && <Spinner />}
+            {submitting ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
           </button>
         </form>
 

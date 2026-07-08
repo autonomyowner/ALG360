@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import SearchOverlay from './SearchOverlay'
 
 const navLinks = [
   { label: 'الأفلام', to: '/films' },
@@ -11,6 +12,7 @@ const navLinks = [
 export default function Navbar({ navigate, pathname }: { navigate: (to: string) => void; pathname: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -33,25 +35,17 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
         scrolled ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-white/10' : 'bg-transparent backdrop-blur-0 border-transparent'
       }`}
     >
-      <div className="flex flex-row-reverse justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+      <div className="flex flex-row justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
         <div className="flex items-center gap-4">
           <button onClick={() => navigate('/')} className="w-9 h-9 rounded-full border-2 border-primary overflow-hidden shrink-0">
             <img src="/logo.png" alt="الجزائر 360" className="w-full h-full object-cover" />
           </button>
-          <button className="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full">
+          <button onClick={() => setSearchOpen(true)} className="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full">
             <span className="material-symbols-outlined">search</span>
-          </button>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full md:hidden"
-          >
-            <span className="material-symbols-outlined">
-              {menuOpen ? 'close' : 'menu'}
-            </span>
           </button>
         </div>
 
-        <div className="hidden md:flex flex-row-reverse gap-8 items-center">
+        <div className="hidden md:flex flex-row gap-8 items-center">
           {navLinks.map((link) => {
             const isActive = pathname === link.to
             return (
@@ -70,10 +64,6 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
           })}
         </div>
 
-        <button onClick={() => navigate('/')} className="md:hidden w-10 h-10 rounded-full border-2 border-primary overflow-hidden shrink-0">
-          <img src="/logo.png" alt="الجزائر 360" className="w-full h-full object-cover" />
-        </button>
-
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => navigate('/login')}
@@ -88,6 +78,14 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
             إنشاء حساب
           </button>
         </div>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full"
+        >
+          <span className="material-symbols-outlined">
+            {menuOpen ? 'close' : 'menu'}
+          </span>
+        </button>
       </div>
 
       {menuOpen && (
@@ -96,7 +94,7 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="absolute top-20 left-4 right-4 md:hidden z-50 bg-surface-container/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+          <div className="absolute top-20 left-4 w-72 md:hidden z-50 bg-surface-container/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
             <div className="py-3">
               {navLinks.map((link, i) => {
                 const isActive = pathname === link.to
@@ -137,6 +135,7 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
           </div>
         </>
       )}
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} onNavigate={navigate} />
     </nav>
   )
 }
