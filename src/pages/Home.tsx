@@ -4,6 +4,7 @@ import CategoryCarousel from '../components/CategoryCarousel'
 import MapTeaser from '../components/MapTeaser'
 import ImageSection from '../components/ImageSection'
 import MembershipCard from '../components/MembershipCard'
+import CoursesTrailer from '../components/CoursesTrailer'
 import Skeleton from '../components/Skeleton'
 
 export default function Home({ navigate }: { navigate: (to: string) => void }) {
@@ -30,6 +31,7 @@ export default function Home({ navigate }: { navigate: (to: string) => void }) {
       <CategoryCarousel />
       <MapTeaser />
       <ImageSection />
+      <CoursesTrailer navigate={navigate} />
       <MembershipCard navigate={navigate} />
     </>
   )
