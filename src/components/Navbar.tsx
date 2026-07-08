@@ -135,7 +135,7 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
           </div>
         </>
       )}
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} onNavigate={navigate} />
     </nav>
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} onNavigate={navigate} />
   )
 }
