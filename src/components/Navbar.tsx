@@ -36,14 +36,14 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
       }`}
     >
       <div className="flex flex-row justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
-        <div className="flex items-center gap-4">
-          <button onClick={() => navigate('/')} className="w-9 h-9 rounded-full border-2 border-primary overflow-hidden shrink-0">
-            <img src="/logo.png" alt="الجزائر 360" className="w-full h-full object-cover" />
-          </button>
-          <button onClick={() => setSearchOpen(true)} className="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full">
-            <span className="material-symbols-outlined">search</span>
-          </button>
-        </div>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full"
+        >
+          <span className="material-symbols-outlined">
+            {menuOpen ? 'close' : 'menu'}
+          </span>
+        </button>
 
         <div className="hidden md:flex flex-row gap-8 items-center">
           {navLinks.map((link) => {
@@ -64,28 +64,28 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
           })}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
-          <button
-            onClick={() => navigate('/login')}
-            className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-3 py-2"
-          >
-            تسجيل الدخول
+        <div className="flex items-center gap-4">
+          <button onClick={() => navigate('/')} className="w-9 h-9 rounded-full border-2 border-primary overflow-hidden shrink-0">
+            <img src="/logo.png" alt="الجزائر 360" className="w-full h-full object-cover" />
           </button>
-          <button
-            onClick={() => navigate('/signup')}
-            className="font-body-md text-body-md text-on-primary bg-primary hover:brightness-110 transition-all px-4 py-2 rounded-xl"
-          >
-            إنشاء حساب
+          <button onClick={() => setSearchOpen(true)} className="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full">
+            <span className="material-symbols-outlined">search</span>
           </button>
+          <div className="hidden md:flex items-center gap-3 mr-4 md:mr-6 pr-4 md:pr-6 border-r border-white/10">
+            <button
+              onClick={() => navigate('/login')}
+              className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-3 py-2"
+            >
+              تسجيل الدخول
+            </button>
+            <button
+              onClick={() => navigate('/signup')}
+              className="font-body-md text-body-md text-on-primary bg-primary hover:brightness-110 transition-all px-4 py-2 rounded-xl"
+            >
+              إنشاء حساب
+            </button>
+          </div>
         </div>
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full"
-        >
-          <span className="material-symbols-outlined">
-            {menuOpen ? 'close' : 'menu'}
-          </span>
-        </button>
       </div>
 
       {menuOpen && (
@@ -94,7 +94,7 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="absolute top-20 left-4 w-72 md:hidden z-50 bg-surface-container/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+          <div className="absolute top-20 right-4 w-72 md:hidden z-50 bg-surface-container/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
             <div className="py-3">
               {navLinks.map((link, i) => {
                 const isActive = pathname === link.to

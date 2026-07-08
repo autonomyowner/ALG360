@@ -58,4 +58,11 @@
     50% { height: 8rem; opacity: 1; }
     65% { height: 0; opacity: 0; }
   }
+  .border-glow {
+    animation: borderGlow 3s ease-in-out infinite;
+  }
+  @keyframes borderGlow {
+    0%, 100% { border-color: rgba(255, 255, 255, 0.05); }
+    50% { border-color: rgba(75, 221, 183, 0.4); }
+  }
 }

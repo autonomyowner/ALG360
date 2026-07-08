@@ -22,7 +22,7 @@ const categories = [
 
 export default function CategoryCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: 'start', dragFree: false },
+    { loop: true, align: 'center', dragFree: false },
     [Autoplay({ delay: 4000, stopOnInteraction: true })]
   )
 
@@ -65,13 +65,13 @@ export default function CategoryCarousel() {
             {categories.map((cat) => (
               <div
                 key={cat.title}
-                className="min-w-[260px] md:min-w-[280px] shrink-0 relative rounded-xl overflow-hidden group cursor-pointer"
+                className="min-w-[75vw] sm:min-w-[260px] md:min-w-[280px] shrink-0 relative rounded-xl overflow-hidden group cursor-pointer h-40 md:h-48"
               >
                 <div className="absolute inset-0">
-                  <img src={cat.image} alt="" className="w-full h-full object-cover" />
+                  <img src={cat.image} alt="" className="w-full h-full object-cover" loading="lazy" />
                   <div className={`absolute inset-0 bg-gradient-to-t ${cat.gradient} opacity-90`} />
                 </div>
-                <div className="relative z-10 h-40 md:h-48 p-5 md:p-6 flex flex-col justify-end border border-white/10 rounded-xl group-hover:border-secondary-container/50 transition-colors">
+                <div className="relative z-10 h-full p-5 md:p-6 flex flex-col justify-end border border-white/10 rounded-xl group-hover:border-secondary-container/50 transition-colors">
                   <h3 className="font-headline-md text-headline-md text-on-background">{cat.title}</h3>
                 </div>
               </div>

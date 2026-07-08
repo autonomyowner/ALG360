@@ -133,60 +133,70 @@ export default function SearchOverlay({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] bg-surface-dim/95 backdrop-blur-2xl"
+          className="fixed inset-0 z-[100] bg-surface-dim/95 backdrop-blur-2xl flex flex-col"
         >
-          <div className="max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop pt-16 md:pt-20">
-            <div className="flex items-center gap-4 mb-8">
-              <span className="material-symbols-outlined text-outline text-2xl">search</span>
+          <div className="max-w-3xl w-full mx-auto px-margin-mobile md:px-margin-desktop pt-3 md:pt-20 shrink-0">
+            <div className="flex items-center gap-2 md:gap-4">
+              <button
+                onClick={onClose}
+                className="md:hidden text-on-surface-variant hover:text-primary transition-colors p-1 -mr-1"
+              >
+                <span className="material-symbols-outlined text-xl">arrow_right</span>
+              </button>
+              <span className="material-symbols-outlined text-outline text-lg md:text-2xl shrink-0">search</span>
               <input
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="ابحث عن أفلام، بودكاست، كتب..."
-                className="flex-1 bg-transparent font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background placeholder:text-outline/40 outline-none"
+                className="flex-1 bg-transparent font-headline-md md:font-display-lg text-headline-md md:text-display-lg text-on-background placeholder:text-outline/40 outline-none py-1 md:py-2"
               />
               <button
                 onClick={onClose}
-                className="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5"
+                className="hidden md:inline-flex text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5"
               >
                 <span className="material-symbols-outlined text-2xl">close</span>
               </button>
             </div>
 
-            <div className="h-px bg-white/5 mb-6" />
+            <div className="h-px bg-white/5 mt-2 md:mt-6 mb-0 md:mb-6" />
+          </div>
 
-            <div className="max-h-[60vh] overflow-y-auto no-scrollbar">
+          <div className="flex-1 overflow-y-auto no-scrollbar px-margin-mobile md:px-margin-desktop max-w-3xl w-full mx-auto pb-4 md:pb-12">
+            <div className="min-h-full">
               {query.trim() && results.length === 0 && (
-                <div className="flex flex-col items-center py-16">
-                  <span className="material-symbols-outlined text-5xl text-outline/30 mb-4">search_off</span>
-                  <p className="font-body-lg text-body-lg text-outline">لا توجد نتائج لـ "{query}"</p>
+                <div className="flex flex-col items-center justify-center py-16 md:py-32">
+                  <span className="material-symbols-outlined text-4xl md:text-6xl text-outline/30 mb-3 md:mb-4">search_off</span>
+                  <p className="font-body-md md:font-body-lg text-body-md md:text-body-lg text-outline">لا توجد نتائج لـ &quot;{query}&quot;</p>
                 </div>
               )}
 
               {!query.trim() && (
-                <div className="flex flex-col items-center py-16">
-                  <span className="material-symbols-outlined text-5xl text-outline/30 mb-4">manage_search</span>
-                  <p className="font-body-lg text-body-lg text-outline">ابدأ الكتابة للبحث في المحتوى</p>
+                <div className="flex flex-col items-center justify-center py-16 md:py-32">
+                  <span className="material-symbols-outlined text-4xl md:text-6xl text-outline/30 mb-3 md:mb-4">manage_search</span>
+                  <p className="font-body-md md:font-body-lg text-body-md md:text-body-lg text-outline">ابدأ الكتابة للبحث في المحتوى</p>
                 </div>
               )}
 
               {grouped.map(([type, items]) => {
                 const cfg = typeConfig[type] || { icon: 'article', color: 'text-on-surface-variant' }
                 return (
-                  <div key={type} className="mb-8">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className={`material-symbols-outlined text-sm ${cfg.color}`}>{cfg.icon}</span>
-                      <span className={`font-label-caps text-label-caps ${cfg.color}`}>{type}</span>
-                      <span className="text-outline text-sm">({items.length})</span>
+                  <div key={type} className="mb-4 md:mb-8">
+                    <div className="sticky top-0 bg-surface-dim/90 backdrop-blur-md z-10 -mx-2 px-2 py-2 md:-mx-4 md:px-4 mb-1 md:mb-4 rounded-lg">
+                      <div className="flex items-center gap-1.5 md:gap-2">
+                        <span className={`material-symbols-outlined text-xs md:text-sm ${cfg.color}`}>{cfg.icon}</span>
+                        <span className={`font-label-caps text-label-caps ${cfg.color}`}>{type}</span>
+                        <span className="text-outline text-xs">({items.length})</span>
+                      </div>
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-px md:space-y-1">
                       {items.map((item) => (
                         <button
                           key={item.id}
                           onClick={() => handleSelect(item.href)}
-                          className="w-full text-right group flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors"
+                          className="w-full text-right group flex items-start gap-2 md:gap-4 p-2 md:p-4 -mx-2 md:-mx-4 px-2 md:px-4 rounded-xl hover:bg-white/5 active:bg-white/10 transition-colors min-h-[44px] md:min-h-0"
                         >
-                          <span className={`material-symbols-outlined text-outline/50 group-hover:${cfg.color} transition-colors mt-0.5`}>
+                          <span className={`material-symbols-outlined text-outline/50 group-hover:${cfg.color} transition-colors mt-0.5 text-lg md:text-2xl shrink-0`}>
                             {cfg.icon}
                           </span>
                           <div className="min-w-0 flex-1">
@@ -194,9 +204,9 @@ export default function SearchOverlay({
                               {item.title}
                             </span>
                             {item.meta && (
-                              <span className="font-label-caps text-label-caps text-outline mr-2">({item.meta})</span>
+                              <span className="font-label-caps text-label-caps text-outline mr-1 md:mr-2 text-xs">({item.meta})</span>
                             )}
-                            <p className="font-body-md text-body-md text-outline/70 text-sm truncate">
+                            <p className="font-body-md text-body-md text-outline/70 text-xs truncate">
                               {item.description}
                             </p>
                           </div>

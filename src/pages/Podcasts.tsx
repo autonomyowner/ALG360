@@ -4,6 +4,14 @@ import EmptyState from '../components/EmptyState'
 
 const podcasts = [
   {
+    title: 'أسرار النجاح في الشركات الناشئة',
+    host: 'بودكاست مع رئيس حاضنة جامعة البويرة سمير ايت عكاش',
+    episodes: 1,
+    description: 'لقاء مع رئيس حاضنة جامعة البويرة سمير ايت عكاش للحديث عن ريادة الأعمال والشركات الناشئة في الجزائر.',
+    category: 'أعمال',
+    youtubeUrl: 'https://www.youtube.com/watch?v=_fI9paLKUBk&t=32s',
+  },
+  {
     title: 'حوارات جزائرية',
     host: 'أحمد بن سعيد',
     episodes: 48,
@@ -30,14 +38,6 @@ const podcasts = [
     episodes: 31,
     description: 'نافذة على المشهد الثقافي والفني الجزائري المعاصر.',
     category: 'ثقافة',
-  },
-  {
-    title: 'أسرار النجاح في الشركات الناشئة',
-    host: 'بودكاست مع رئيس حاضنة جامعة البويرة سمير ايت عكاش',
-    episodes: 1,
-    description: 'لقاء مع رئيس حاضنة جامعة البويرة سمير ايت عكاش للحديث عن ريادة الأعمال والشركات الناشئة في الجزائر.',
-    category: 'أعمال',
-    youtubeUrl: 'https://www.youtube.com/watch?v=_fI9paLKUBk&t=32s',
   },
   {
     title: 'الطبخ الجزائري',
@@ -81,43 +81,49 @@ export default function Podcasts() {
         />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {podcasts.map((podcast) => (
-            <div
-              key={podcast.title}
-              className="group relative rounded-xl overflow-hidden bg-surface-container-low border border-white/5 hover:border-secondary-container/50 transition-all duration-300 p-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-14 h-14 rounded-full bg-secondary-container/20 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-secondary text-2xl">podcasts</span>
+          {podcasts.map((podcast) => {
+            const isExternal = 'youtubeUrl' in podcast && podcast.youtubeUrl
+            const card = (
+              <div
+                key={podcast.title}
+                className="group relative rounded-xl overflow-hidden bg-surface-container-low border border-white/5 border-glow hover:border-secondary-container/50 transition-all duration-300 p-6"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-14 h-14 rounded-full bg-secondary-container/20 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-secondary text-2xl">podcasts</span>
+                  </div>
+                  <div>
+                    <span className="font-label-caps text-label-caps text-secondary">{podcast.category}</span>
+                    <p className="font-body-md text-body-md text-on-surface-variant">{podcast.host}</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="font-label-caps text-label-caps text-secondary">{podcast.category}</span>
-                  <p className="font-body-md text-body-md text-on-surface-variant">{podcast.host}</p>
+                <h3 className="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-primary transition-colors">
+                  {podcast.title}
+                </h3>
+                <p className="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">
+                  {podcast.description}
+                </p>
+                <div className="flex items-center gap-2 text-outline font-label-caps text-label-caps">
+                  <span className="material-symbols-outlined text-sm">headphones</span>
+                  <span>{podcast.episodes} حلقة</span>
                 </div>
               </div>
-              <h3 className="font-headline-md text-headline-md text-on-background mb-2 group-hover:text-primary transition-colors">
-                {podcast.title}
-              </h3>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">
-                {podcast.description}
-              </p>
-              <div className="flex items-center gap-2 text-outline font-label-caps text-label-caps">
-                <span className="material-symbols-outlined text-sm">headphones</span>
-                <span>{podcast.episodes} حلقة</span>
-              </div>
-              {'youtubeUrl' in podcast && podcast.youtubeUrl && (
-                <a
-                  href={podcast.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center gap-1.5 text-sm text-secondary hover:text-secondary-fixed transition-colors font-label-caps"
-                >
-                  <span className="material-symbols-outlined text-base">play_circle</span>
-                  شاهد على YouTube
-                </a>
-              )}
-            </div>
-          ))}
+            )
+
+            return isExternal ? (
+              <a
+                key={podcast.title}
+                href={podcast.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                {card}
+              </a>
+            ) : (
+              card
+            )
+          })}
         </div>
       )}
     </div>
