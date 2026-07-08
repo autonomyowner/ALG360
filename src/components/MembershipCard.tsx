@@ -7,7 +7,7 @@ export default function MembershipCard({ navigate }: { navigate: (to: string) =>
           <div className="relative z-10 flex flex-col items-center text-center">
             <h2 className="font-headline-md text-headline-md text-on-background mb-2">العضوية الذهبية</h2>
             <p className="font-body-md text-body-md text-on-surface-variant mb-6 max-w-md text-balance">
-              احصل على وصول حصري للتقارير المعمقة، تحليلات السوق، والمحتوى الثقافي المميز.
+              احصل على وصول حصري للتقارير المعمقة، تحليلات السوق، التكوينات والدورات، والمحتوى الثقافي المميز.
             </p>
             <button onClick={() => navigate('/login')} className="bg-surface-dim border border-tertiary text-tertiary font-body-md text-body-md px-8 py-3 rounded-full hover:bg-tertiary hover:text-on-tertiary transition-all">
               ترقية الحساب

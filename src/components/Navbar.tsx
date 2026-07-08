@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'المكتبة', to: '/library' },
   { label: 'المركز الأكاديمي', to: '/academic' },
   { label: 'التراث', to: '/heritage' },
+  { label: 'التكوينات و الدورات', to: '/courses' },
 ]
 
 export default function Navbar({ navigate, pathname }: { navigate: (to: string) => void; pathname: string }) {

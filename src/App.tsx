@@ -8,6 +8,7 @@ import Podcasts from './pages/Podcasts'
 import Library from './pages/Library'
 import Academic from './pages/Academic'
 import Heritage from './pages/Heritage'
+import TrainingCourses from './pages/TrainingCourses'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 
@@ -60,6 +61,7 @@ export default function App() {
             <Route path="/library" component={<Library />} pathname={pathname} />
             <Route path="/academic" component={<Academic />} pathname={pathname} />
             <Route path="/heritage" component={<Heritage />} pathname={pathname} />
+            <Route path="/courses" component={<TrainingCourses />} pathname={pathname} />
             <Route path="/login" component={<Login navigate={navigate} />} pathname={pathname} />
             <Route path="/signup" component={<Signup navigate={navigate} />} pathname={pathname} />
           </motion.div>

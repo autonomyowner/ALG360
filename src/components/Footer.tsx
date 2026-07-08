@@ -15,6 +15,7 @@ export default function Footer({ navigate }: { navigate: (to: string) => void })
             <button onClick={() => navigate('/films')} className="w-fit font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">الأفلام</button>
             <button onClick={() => navigate('/podcasts')} className="w-fit font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">بودكاست</button>
             <button onClick={() => navigate('/library')} className="w-fit font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">المكتبة</button>
+            <button onClick={() => navigate('/courses')} className="w-fit font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">التكوينات و الدورات</button>
           </div>
           <div className="flex flex-col gap-3 md:gap-4">
             <a href="#" className="w-fit font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">تواصل معنا</a>
@@ -23,7 +24,7 @@ export default function Footer({ navigate }: { navigate: (to: string) => void })
         </div>
         <div className="flex flex-col items-center md:items-end justify-end gap-2">
           <span className="font-body-md text-body-md text-on-surface-variant opacity-80">
-            © 2024 الجزائر 360. جميع الحقوق محفوظة.
+            © 2026 الجزائر 360. جميع الحقوق محفوظة.
           </span>
           <a href="https://sitedz.com" target="_blank" rel="noopener noreferrer" className="font-body-lg text-body-lg text-tertiary hover:text-tertiary brightness-110 hover:brightness-150 transition-all drop-shadow-[0_0_10px_rgba(231,190,97,0.45)]">
             sitedz
