@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>الجزائر 360 - الجزائر في منصة رقمية واحدة</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;600&amp;family=Geist:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#eac349",
+                        "surface-container-highest": "#353534",
+                        "on-secondary": "#00382b",
+                        "outline": "#8b938d",
+                        "tertiary-fixed": "#ffe088",
+                        "secondary-container": "#02b894",
+                        "primary-container": "#0d3b2a",
+                        "primary-fixed": "#beedd4",
+                        "on-primary": "#083827",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary": "#3c2f00",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-dim": "#131313",
+                        "on-primary-container": "#79a68f",
+                        "inverse-primary": "#3c6753",
+                        "on-secondary-fixed-variant": "#005140",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface": "#131313",
+                        "on-primary-fixed": "#002115",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary-container": "#4f3e00",
+                        "surface-tint": "#a2d1b9",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary": "#4bddb7",
+                        "on-background": "#e5e2e1",
+                        "primary-fixed-dim": "#a2d1b9",
+                        "secondary-fixed": "#6dfad2",
+                        "outline-variant": "#414944",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-secondary-container": "#004233",
+                        "secondary-fixed-dim": "#4bddb7",
+                        "background": "#131313",
+                        "on-surface-variant": "#c0c8c2",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#234f3c",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313030",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#002018",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "primary": "#a2d1b9",
+                        "surface-variant": "#353534",
+                        "tertiary-container": "#cca830",
+                        "surface-container": "#201f1f",
+                        "surface-bright": "#3a3939",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["IBM Plex Sans Arabic"],
+                        "headline-md": ["IBM Plex Sans Arabic"],
+                        "display-lg-mobile": ["IBM Plex Sans Arabic"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Geist"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(19, 19, 19, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .emerald-glow {
+            box-shadow: 0 0 40px rgba(2, 184, 148, 0.1);
+        }
+        .premium-shimmer {
+            background: linear-gradient(90deg, rgba(234, 195, 73, 0.1) 0%, rgba(234, 195, 73, 0.2) 50%, rgba(234, 195, 73, 0.1) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased overflow-x-hidden selection:bg-secondary-container selection:text-on-primary">
+<!-- Top Navigation (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300">
+<div class="flex flex-row-reverse justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-white/5 transition-all duration-300 scale-95 active:scale-90 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-white/5 transition-all duration-300 scale-95 active:scale-90 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span>
+</button>
+<img alt="User profile avatar" class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="A small circular avatar placeholder image showing a silhouette or default user icon, styled in a dark premium theme with a subtle emerald green border." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz-DqlKvrG1qQ1L9WXqsHGGAlmNnMTMWpQJBHF9FlUgQ3qPzmgD0dr3OiNuyysviGC3xx8XA8-AF8ocZ5GyQPOy3qu-RUhdl3pc2ySIR9RgDX9WWA3d-UTl741FRDY7bdblXb58X2-6wmebz6TKxfPzbrf8zSAPBBBHVYxt-ZpnhtVVNuQ_8f4CEDRNobQNQJDoHAnq3tCYnlVMwZQf4n-HtCt2PGApTS-wuoLn-D16qglffEZ67FgUNhteHa72bdilHYxypuy-t0x"/>
+</div>
+<ul class="hidden md:flex flex-row-reverse items-center gap-8">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">الأفلام</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">بودكاست</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">المكتبة</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">المركز الأكاديمي</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">التراث</a></li>
+</ul>
+<div class="flex items-center">
+<a class="font-display-lg text-headline-md text-primary font-bold tracking-tight" href="#">الجزائر 360</a>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Cinematic Hero -->
+<section class="relative min-h-[921px] flex items-center justify-center px-margin-mobile md:px-margin-desktop py-24">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay" data-alt="A wide cinematic landscape of Algiers at dusk, blending rich emerald greens and deep dark shadows. High contrast, premium glassmorphic UI elements floating above. The scene feels modern, visionary, and steeped in Algerian heritage." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC78ZV36r5HWrZDdVZbcFDl1eRhmFo_vCQV-OccQlvCkYGUxQTZ14GAz1VhlKfH-_L78OVtMefk6VQuKIiQTrQ8nOGA1ZfJmubwMJS-TAtsReMhoolZ_A1M7zeFuW02fhX92nJ1dFJtE1dkd8SOGr0wx9k-39fkTaYYVZSsNBfaVJmnEmKJgFmfdwE_obrL8WHDIzNbs_hD9lWsPMAVmGroIdGehQ7rANxjtPbZSNrRO_fy1MnFJyXJOtMegSzEhfR82RmDI75xOdqY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto text-center flex flex-col items-center">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6 max-w-4xl leading-tight">
+                    الجزائر في منصة رقمية واحدة
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl">
+                    اكتشف الأفلام الجزائرية، الوثائقيات، البودكاست، المحتوى الثقافي، والفضاء الأكاديمي في تجربة رقمية متكاملة.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+<button class="bg-secondary-container text-on-primary px-8 py-4 rounded-full font-headline-md text-body-lg hover:bg-secondary transition-colors duration-300 shadow-[0_0_20px_rgba(2,184,148,0.3)]">
+                        ابدأ الاستكشاف
+                    </button>
+<button class="glass-panel text-on-surface px-8 py-4 rounded-full font-headline-md text-body-lg hover:bg-white/10 transition-colors duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                        مشاهدة المحتوى
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full rounded-t-xl border-t border-outline-variant mt-24">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto rtl">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+<a class="font-display-lg text-headline-md text-primary font-bold" href="#">الجزائر 360</a>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity">
+                    © 2024 الجزائر 360. جميع الحقوق محفوظة.
+                </p>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-8 justify-end">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">الإعلام</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">الثقافة</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">التعليم</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">تواصل معنا</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">سياسة الخصوصية</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple script to handle header transparency on scroll
+        const header = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-2xl');
+                header.classList.replace('bg-surface/80', 'bg-surface/95');
+            } else {
+                header.classList.remove('shadow-2xl');
+                header.classList.replace('bg-surface/95', 'bg-surface/80');
+            }
+        });
+    </script>
+</body></html>
