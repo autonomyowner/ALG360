@@ -35,6 +35,9 @@ export default function Navbar({ navigate, pathname }: { navigate: (to: string) 
     >
       <div className="flex flex-row-reverse justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
         <div className="flex items-center gap-4">
+          <button onClick={() => navigate('/')} className="w-9 h-9 rounded-full border-2 border-primary overflow-hidden shrink-0">
+            <img src="/logo.png" alt="الجزائر 360" className="w-full h-full object-cover" />
+          </button>
           <button className="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full">
             <span className="material-symbols-outlined">search</span>
           </button>

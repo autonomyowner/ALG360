@@ -1,14 +1,17 @@
 const categories = [
   {
     title: 'التراث',
+    image: '/تراث.webp',
     gradient: 'from-surface-dim to-transparent',
   },
   {
     title: 'الاستثمار',
+    image: '/investment.webp',
     gradient: 'from-surface-dim to-transparent',
   },
   {
     title: 'الثقافة',
+    image: '/ثقافة.webp',
     gradient: 'from-surface-dim to-transparent',
   },
 ]
@@ -25,7 +28,8 @@ export default function CategoryCarousel() {
             key={cat.title}
             className="min-w-[260px] md:min-w-[280px] snap-start relative rounded-xl overflow-hidden group cursor-pointer shrink-0"
           >
-            <div className="absolute inset-0 bg-surface-container-low">
+            <div className="absolute inset-0">
+              <img src={cat.image} alt="" className="w-full h-full object-cover" />
               <div className={`absolute inset-0 bg-gradient-to-t ${cat.gradient} opacity-90`} />
             </div>
             <div className="relative z-10 h-40 md:h-48 p-5 md:p-6 flex flex-col justify-end border border-white/10 rounded-xl group-hover:border-secondary-container/50 transition-colors">
