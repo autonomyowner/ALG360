@@ -1,3 +1,5 @@
+import Typewriter from "./Typewriter";
+
 export default function Hero({ navigate }: { navigate: (to: string) => void }) {
   return (
     <section className="relative w-full min-h-[80dvh] md:h-[618px] flex items-end pb-10 md:pb-12">
@@ -9,9 +11,13 @@ export default function Hero({ navigate }: { navigate: (to: string) => void }) {
         <span className="inline-block font-label-caps text-label-caps text-secondary mb-3 md:mb-4 tracking-[0.2em] uppercase">
           رؤية المستقبل
         </span>
-        <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-3 md:mb-4 text-balance">
-          بوابة الثقافة والاستثمار
-        </h1>
+<h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-3 md:mb-4 text-balance">
+  <Typewriter
+    text="بوابة الثقافة والاستثمار"
+    speed={80}
+    className="relative"
+  />
+</h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant mb-6 md:mb-8 max-w-2xl text-balance">
           اكتشف الإمكانيات اللامحدودة والتراث الغني من خلال منصتنا التفاعلية المتطورة.
         </p>
