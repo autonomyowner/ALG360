@@ -31,7 +31,14 @@ const courses = [
 
 export default function CoursesTrailer({ navigate }: { navigate: (to: string) => void }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: 'center', skipSnaps: false },
+    {
+      loop: true,
+      align: 'start',
+      skipSnaps: false,
+      breakpoints: {
+        '(min-width: 768px)': { align: 'center' },
+      },
+    },
     [Autoplay({ delay: 3000, stopOnInteraction: true })]
   )
 
@@ -83,24 +90,29 @@ export default function CoursesTrailer({ navigate }: { navigate: (to: string) =>
         </button>
 
         <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
-          <div className="flex gap-4 px-margin-mobile md:px-margin-desktop">
+          <div className="flex gap-3 sm:gap-4 px-margin-mobile md:px-margin-desktop">
             {courses.map((course) => (
               <div
                 key={course.title}
-                className="min-w-[75vw] sm:min-w-[280px] md:min-w-[320px] shrink-0 relative rounded-xl overflow-hidden group cursor-pointer h-48 md:h-56"
+                className="min-w-[calc(100vw-40px)] sm:min-w-[260px] md:min-w-[320px] lg:min-w-[360px] shrink-0 relative rounded-xl overflow-hidden group cursor-pointer h-44 sm:h-48 md:h-56 aspect-video"
               >
                 <div className="absolute inset-0">
-                  <img src={course.image} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-14 h-14 rounded-full bg-primary/90 flex items-center justify-center backdrop-blur-sm">
-                    <span className="material-symbols-outlined text-3xl text-on-primary">play_arrow</span>
+                  <div className="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-primary/90 flex items-center justify-center backdrop-blur-sm hover:bg-primary transition-colors">
+                    <span className="material-symbols-outlined text-2xl sm:text-3xl text-on-primary">play_arrow</span>
                   </div>
                 </div>
-                <div className="relative z-10 h-full p-5 md:p-6 flex flex-col justify-end">
-                  <h3 className="font-headline-md text-headline-md text-on-background">{course.title}</h3>
-                  <p className="font-body-md text-body-md text-on-surface-variant opacity-80 line-clamp-1">دورة تدريبية شاملة</p>
+                <div className="relative z-10 h-full p-4 sm:p-5 md:p-6 flex flex-col justify-end">
+                  <h3 className="font-headline-md text-headline-md text-on-background leading-tight line-clamp-2">{course.title}</h3>
+                  <p className="font-body-md text-body-md text-on-surface-variant opacity-80 line-clamp-1 mt-1">دورة تدريبية شاملة</p>
                 </div>
               </div>
             ))}
